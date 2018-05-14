@@ -1,6 +1,3 @@
-import json
-import base64
-
 def hello(event, context):
     base64str = get_art()
     response = {
@@ -11,10 +8,10 @@ def hello(event, context):
         },
         'isBase64Encoded': True
     }
-
     return response
 
 def get_art():
+    import base64
     from wand.image import Image
     from wand.drawing import Drawing
     from wand.color import Color
