@@ -2,20 +2,13 @@ import json
 import base64
 
 def hello(event, context):
-    
-    # base64str = get_art()
-
-    img = open('test.png', 'rb').read()
-    base64str = base64.b64encode(img)
-    base64str = base64str.decode('utf8')
-
+    base64str = get_art()
     response = {
         'statusCode': 200,
         'body': base64str,
         'headers': {
             'Content-Type': 'image/png'
         },
-        # 'contentHandling': 'CONVERT_TO_BINARY',
         'isBase64Encoded': True
     }
 
@@ -37,4 +30,4 @@ def get_art():
                 height=100,
                 background=Color('lightblue')) as img:
             draw.draw(img)
-            return str(base64.b64encode(img.make_blob('png')))
+            return base64.b64encode(img.make_blob('png')).decode('utf8')
